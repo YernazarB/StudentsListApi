@@ -7,16 +7,16 @@ namespace StudentsListApi.Controllers
     [ApiController]
     public class AcademicPerformancesController : ControllerBase
     {
-        private readonly IAcademicPerformanceRepository _service;
-        public AcademicPerformancesController(IAcademicPerformanceRepository service)
+        private readonly IAcademicPerformanceRepository _repository;
+        public AcademicPerformancesController(IAcademicPerformanceRepository repository)
         {
-            _service = service;
+            _repository = repository;
         }
 
         [HttpGet]
         public ActionResult GetAcademicPerformances()
         {
-            return Ok(_service.GetAcademicPerformances());
+            return Ok(_repository.GetAcademicPerformances());
         }
     }
 }

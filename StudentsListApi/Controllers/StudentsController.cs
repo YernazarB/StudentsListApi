@@ -10,16 +10,16 @@ namespace StudentsListApi.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly IStudentsRepository _service;
-        public StudentsController(IStudentsRepository service)
+        private readonly IStudentsRepository _repository;
+        public StudentsController(IStudentsRepository repository)
         {
-            _service = service;
+            _repository = repository;
         }
 
         [HttpGet]
         public async Task<List<StudentDto>> GetStudents()
         {
-            return await _service.Get();
+            return await _repository.Get();
         }
 
         [HttpPost]
@@ -30,7 +30,7 @@ namespace StudentsListApi.Controllers
                 return null;
             }
 
-            return await _service.Create(dto);
+            return await _repository.Create(dto);
         }
 
         [HttpPut]
@@ -41,13 +41,13 @@ namespace StudentsListApi.Controllers
                 return;
             }
 
-            await _service.Update(dto);
+            await _repository.Update(dto);
         }
 
         [HttpDelete]
         public async Task Delete(int id)
         {
-            await _service.Delete(id);
+            await _repository.Delete(id);
         }
     }
 }
